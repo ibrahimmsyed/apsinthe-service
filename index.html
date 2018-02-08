@@ -1,0 +1,20 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+var json = {
+username : "admin",
+				password : "Admin123$"}
+$.ajax({
+            url: 'http://10.98.20.104/trackR/index.php/userprofile?token=$1$97QJjElE$TiIx7M.BGd9a0AoEEsk0B.&uid=2',
+            type: 'GET', 
+			dataType: 'json',
+			
+             success: function(responseData, textStatus, jqXHR) {
+				console.log(responseData);
+				$("#sample").html(JSON.stringify(responseData));
+			},
+			error: function (responseData, textStatus, errorThrown) {
+				console.log(errorThrown);
+			}
+        });  
+</script>
+<div id="sample"></div>
