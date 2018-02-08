@@ -50,9 +50,9 @@ class task extends CI_Controller {
 
 	public function create()
 	{
-		$method = $_SERVER['REQUEST_METHOD'];
+		$method = $_SERVER['REQUEST_METHOD']; 
 		if($method != 'POST'  && $method != 'OPTIONS'){
-			json_output(400,array('status' => 400,'message' => 'Bad request.'));
+			json_output(400,array('status' => 400,'message' => 'Bad requests.'));
 		} else {
 			$response = $this->MyModel->auth();
 			$respStatus = $response['status'];
