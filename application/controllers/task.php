@@ -17,7 +17,7 @@ class task extends CI_Controller {
 
 	public function index()
 	{
-		$users_id  =  $_GET['user-id'];
+		$users_id  =  $_GET['uid'];
 		$method = $_SERVER['REQUEST_METHOD'];
 
 		if($method != 'GET' && $method != 'OPTIONS'){
@@ -25,7 +25,7 @@ class task extends CI_Controller {
 		} else {
 			$response = $this->MyModel->auth();
 			if($response['status'] == 200){
-				$resp = $this->MyModel->user_details($users_id);
+				$resp = $this->MyModel->task_list($users_id);
 				json_output($response['status'],$resp);
 			}
 		}
@@ -35,7 +35,7 @@ class task extends CI_Controller {
 	{
 		$method = $_SERVER['REQUEST_METHOD'];
 		if($method != 'GET' || $this->uri->segment(3) == '' || is_numeric($this->uri->segment(3)) == FALSE){
-			json_output(400,array('status' => 400,'message' => 'Bad Request.'));
+			json_output(201,array('status' => 201,'message' => 'Bad Request.'));
 		} else {
 			$check_auth_client = $this->MyModel->check_auth_client();
 			if($check_auth_client == true){
@@ -59,8 +59,8 @@ class task extends CI_Controller {
 			if($response['status'] == 200){
 				$params = json_decode(file_get_contents('php://input'), TRUE);
                 if ($params['converge_id'] == "" || $params['jobtype'] == "" || $params['complexity'] == "" || $params['scheduled_start_date'] == "" || $params['scheduled_end_date'] == "" || $params['publisher'] == "" || $params['pocs'] == "" || $params['scheduled_hours'] == "" ){
-					$respStatus = 400;
-					$resp = array('status' => 400,'message' =>  'Data\'s Missing');
+					$respStatus = 201;
+					$resp = array('status' => 201,'message' =>  'Data\'s Missing');
 				} else {
 					$resp = $this->MyModel->task_create($params);
 				}

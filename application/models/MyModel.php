@@ -62,7 +62,7 @@ class MyModel extends CI_Model {
 
         $q  = $this->db->select('expired_at')->from('userprofile')->where('uid',$users_id)->where('token_id',$token)->get()->row();
         if($q == ""){
-            return json_output(401,array('status' => 401,'message' => $token));
+            return json_output(201,array('status' => 201,'message' => "Error"));
         } else {
             if($q->expired_at < date('Y-m-d H:i:s')){
                 return json_output(401,array('status' => 401,'message' => 'Your session has been expired.'));
@@ -79,7 +79,10 @@ class MyModel extends CI_Model {
     {
         return $this->db->select('uid,emp_id,fname,lname,gender,dob,doj,email_id,designation,team,dept,division,contact_no,emergency_contact_no,role,profile_pic,shift_type')->from('userprofile')->where('UID',$id)->order_by('uid','desc')->get()->result();
     }
-
+    public function task_list($id)
+    {
+        return $this->db->select('*')->from('tasks')->where('uid',$id)->order_by('uid','desc')->get()->result();
+    }
     public function task_create($data)
     {
         $this->db->insert('tasks',$data);
