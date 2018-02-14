@@ -2,7 +2,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 class MyModel extends CI_Model {
 
-    
+   
+
     public function login($empid,$password)
     {   
         
@@ -30,7 +31,7 @@ class MyModel extends CI_Model {
                   return array('status' => 500,'message' => 'Internal server error.');
                } else {
                   $this->db->trans_commit();
-                  return array('status' => 200,'message' => 'Successfully login.','id' => $id, 'token_id' => $token,'user-role' => $userrole);
+                  return array('status' => 200,'message' => 'Successfully login.','id' => $id, 'token_id' => $token,'user_role' => $userrole);
                }
             } else {
                return array('status' => 201,'message' => 'Wrong password.');
@@ -87,6 +88,12 @@ class MyModel extends CI_Model {
     {
         $this->db->insert('tasks',$data);
         return array('status' => 201,'message' => 'Data\'s has been created.');
+    }
+
+    public function task_update_data($id,$data)
+    {
+        $this->db->where('task_id',$id)->update('tasks',$data);
+        return array('status' => 200,'message' => 'Data has been updated.');
     }
 
     public function book_detail_data($id)

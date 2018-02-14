@@ -72,24 +72,21 @@ class task extends CI_Controller {
 	public function update($id)
 	{
 		$method = $_SERVER['REQUEST_METHOD'];
-		if($method != 'PUT' || $this->uri->segment(3) == '' || is_numeric($this->uri->segment(3)) == FALSE){
+		if($method != 'POST'  && $method != 'OPTIONS' || $this->uri->segment(3) == '' || is_numeric($this->uri->segment(3)) == FALSE){
 			json_output(400,array('status' => 400,'message' => 'Bad request.'));
 		} else {
-			$check_auth_client = $this->MyModel->check_auth_client();
-			if($check_auth_client == true){
-		        $response = $this->MyModel->auth();
-		        $respStatus = $response['status'];
-		        if($response['status'] == 200){
-					$params = json_decode(file_get_contents('php://input'), TRUE);
-					$params['updated_at'] = date('Y-m-d H:i:s');
-					if ($params['title'] == "" || $params['author'] == "") {
-						$respStatus = 400;
-						$resp = array('status' => 400,'message' =>  'Title & Author can\'t empty');
-					} else {
-		        		$resp = $this->MyModel->book_update_data($id,$params);
-					}
-					json_output($respStatus,$resp);
-		        }
+			$response = $this->MyModel->auth();
+			$respStatus = $response['status'];
+			if($response['status'] == 200){
+				$params = json_decode(file_get_contents('php://input'), TRUE);
+				$params['updated_at'] = date('Y-m-d H:i:s');
+				if ($params['converge_id'] == "" || $params['jobtype'] == "" || $params['complexity'] == "" || $params['scheduled_start_date'] == "" || $params['scheduled_end_date'] == "" || $params['publisher'] == "" || $params['pocs'] == "" || $params['scheduled_hours'] == "" ){
+					$respStatus = 201;
+					$resp = array('status' => 201,'message' =>  'Data\'s Missing');
+				} else {
+					$resp = $this->MyModel->task_update_data($id,$params);
+				}
+				json_output($respStatus,$resp);
 			}
 		}
 	}
