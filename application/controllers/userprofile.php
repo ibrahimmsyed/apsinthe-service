@@ -48,6 +48,22 @@ class userprofile extends CI_Controller {
 		}
 	}
 
+	public function list()
+	{
+		$users_id  =  $_GET['uid'];
+		$method = $_SERVER['REQUEST_METHOD'];
+
+		if($method != 'GET' && $method != 'OPTIONS'){
+			json_output(400,array('status' => 400,'message' => $method));
+		} else {
+			$response = $this->MyModel->auth();
+			if($response['status'] == 200){
+				$resp = $this->MyModel->users_list();
+				json_output($response['status'],$resp);
+			}
+		}
+	}
+
 	public function create()
 	{
 		$method = $_SERVER['REQUEST_METHOD'];

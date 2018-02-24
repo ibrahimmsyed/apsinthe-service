@@ -80,6 +80,13 @@ class MyModel extends CI_Model {
     {
         return $this->db->select('uid,emp_id,fname,lname,gender,dob,doj,email_id,designation,team,dept,division,contact_no,emergency_contact_no,role,profile_pic,shift_type')->from('userprofile')->where('UID',$id)->order_by('uid','desc')->get()->result();
     }
+
+    public function users_list()
+    {
+        return $this->db->select('uid,emp_id,fname')->from('userprofile')->order_by('uid','desc')->get()->result();
+    }
+
+    
     public function task_list($id)
     {
         return $this->db->select('*')->from('tasks')->where('uid',$id)->order_by('uid','desc')->get()->result();
