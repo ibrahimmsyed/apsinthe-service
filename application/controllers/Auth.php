@@ -15,7 +15,9 @@ class Auth extends CI_Controller {
 			$response = $this->MyModel->login($empid,$password);
 			/* print_r("hi");
 			print_r($response);die; */
-			json_output($response['status'],$response);
+			//json_output($response['status'],$response);
+			
+			echo json_encode($response, JSON_NUMERIC_CHECK);
 		}
 	}
 
