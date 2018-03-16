@@ -97,15 +97,34 @@ class MyModel extends CI_Model {
         return array('status' => 201,'message' => 'Data\'s has been created.');
     }
 
+    
     public function task_update_data($id,$data)
     {
         $this->db->where('task_id',$id)->update('tasks',$data);
         return array('status' => 200,'message' => 'Data has been updated.');
     }
 
-    public function book_detail_data($id)
+    public function disc_list($id)
     {
-        return $this->db->select('id,title,author')->from('books')->where('id',$id)->order_by('id','desc')->get()->row();
+       //$where = "FIND_IN_SET('5', topic_access)";  
+   
+        return $this->db->select('*')->from('topic')->where("find_in_set(5,topic_access)!=", 0)->get()->result();
+    }
+
+    public function disc_create($params)
+    {
+        $now = date('Y-m-d H:i:s');
+        
+        $data = array
+		(
+			'topic_title' => $params['topic_title'],
+            'topic_desc' => $params['topic_desc'],
+            'topic_creator' => $params['uid'],
+            'topic_access' => $params['topic_access'],
+            'topic_date' => $now
+		);
+        $this->db->insert('topic',$data);
+        return array('status' => 201,'message' => 'Data\'s has been created.');
     }
 
     
