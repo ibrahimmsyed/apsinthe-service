@@ -26,7 +26,8 @@ class task extends CI_Controller {
 			$response = $this->MyModel->auth();
 			if($response['status'] == 200){
 				$resp = $this->MyModel->task_list($users_id);
-				json_output($response['status'],$resp);
+				//json_output($response['status'],$resp);
+				echo json_encode($response, JSON_NUMERIC_CHECK);
 			}
 		}
 	}
@@ -58,7 +59,7 @@ class task extends CI_Controller {
 			$respStatus = $response['status'];
 			if($response['status'] == 200){
 				$params = json_decode(file_get_contents('php://input'), TRUE);
-                if ($params['converge_id'] == "" || $params['jobtype'] == "" || $params['complexity'] == "" || $params['scheduled_start_date'] == "" || $params['scheduled_end_date'] == "" || $params['publisher'] == "" || $params['pocs'] == "" || $params['scheduled_hours'] == "" ){
+                if ($params['converge_id'] == "" || $params['jobtype'] == "" || $params['complexity'] === "" || $params['scheduled_start_date'] == "" || $params['scheduled_end_date'] == "" || $params['publisher'] == "" || $params['pocs'] == "" || $params['scheduled_hours'] == "" ){
 					$respStatus = 201;
 					$resp = array('status' => 201,'message' =>  'Data\'s Missing');
 				} else {
@@ -67,7 +68,7 @@ class task extends CI_Controller {
 				json_output($respStatus,$resp);
 			}
 		}
-	}
+	} 
 
 	public function update($id)
 	{
@@ -80,13 +81,35 @@ class task extends CI_Controller {
 			if($response['status'] == 200){
 				$params = json_decode(file_get_contents('php://input'), TRUE);
 				$params['updated_at'] = date('Y-m-d H:i:s');
-				if ($params['converge_id'] == "" || $params['jobtype'] == "" || $params['complexity'] == "" || $params['scheduled_start_date'] == "" || $params['scheduled_end_date'] == "" || $params['publisher'] == "" || $params['pocs'] == "" || $params['scheduled_hours'] == "" ){
+				if ($params['converge_id'] == "" || $params['jobtype'] == "" || $params['complexity'] === "" || $params['scheduled_start_date'] == "" || $params['scheduled_end_date'] == "" || $params['publisher'] == "" || $params['pocs'] == "" || $params['scheduled_hours'] == "" ){
 					$respStatus = 201;
 					$resp = array('status' => 201,'message' =>  'Data\'s Missing');
 				} else {
 					$resp = $this->MyModel->task_update_data($id,$params);
 				}
 				json_output($respStatus,$resp);
+			}
+		}
+	}
+
+	public function status($id)
+	{
+		$method = $_SERVER['REQUEST_METHOD'];
+		if($method != 'POST'  && $method != 'OPTIONS' || $this->uri->segment(3) == '' || is_numeric($this->uri->segment(3)) == FALSE){
+			json_output(400,array('status' => 400,'message' => 'Bad request.'));
+		} else {
+			$response = $this->MyModel->auth();
+			$respStatus = $response['status'];
+			if($response['status'] == 200){
+				$params = json_decode(file_get_contents('php://input'), TRUE);
+				$params['updated_at'] = date('Y-m-d H:i:s');
+				if ($params['task_status']===""){
+					$respStatus = 201;
+					$resp = array('status' => 201,'message' =>  'Data\'s Missing');
+				} else {
+					$resp = $this->MyModel->task_update_status($id,$params);
+				}
+                    echo json_encode($resp, JSON_NUMERIC_CHECK);
 			}
 		}
 	}

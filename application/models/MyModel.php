@@ -97,9 +97,19 @@ class MyModel extends CI_Model {
         return array('status' => 201,'message' => 'Data\'s has been created.');
     }
 
-    
+    public function task_update_status($id,$data)
+    {
+        $uid = $data['uid'];
+        $appointment = array('task_status' => 0);    
+        $this->db->where('uid', $uid);
+        $this->db->update('tasks', $appointment); 
+        $this->db->where('task_id',$id)->update('tasks',$data);
+        return array('status' => 200,'message' => 'Data has been updated.');
+    }
+
     public function task_update_data($id,$data)
     {
+        
         $this->db->where('task_id',$id)->update('tasks',$data);
         return array('status' => 200,'message' => 'Data has been updated.');
     }
