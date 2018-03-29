@@ -99,10 +99,11 @@ class MyModel extends CI_Model {
 
     public function task_update_status($id,$data)
     {
+        $status = "2";
         $uid = $data['uid'];
-        $appointment = array('task_status' => 0);    
+        $appointment = array('task_status' => 1);    
         $this->db->where('uid', $uid);
-        $this->db->update('tasks', $appointment); 
+        $this->db->where('task_status',$status)->update('tasks', $appointment);
         $this->db->where('task_id',$id)->update('tasks',$data);
         return array('status' => 200,'message' => 'Data has been updated.');
     }

@@ -27,7 +27,7 @@ class task extends CI_Controller {
 			if($response['status'] == 200){
 				$resp = $this->MyModel->task_list($users_id);
 				//json_output($response['status'],$resp);
-				echo json_encode($response, JSON_NUMERIC_CHECK);
+				echo json_encode($resp, JSON_NUMERIC_CHECK);
 			}
 		}
 	}
@@ -65,7 +65,8 @@ class task extends CI_Controller {
 				} else {
 					$resp = $this->MyModel->task_create($params);
 				}
-				json_output($respStatus,$resp);
+				//json_output($respStatus,$resp);
+				echo json_encode($resp, JSON_NUMERIC_CHECK);
 			}
 		}
 	} 
