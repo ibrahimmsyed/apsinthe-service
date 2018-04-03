@@ -26,7 +26,8 @@ class userprofile extends CI_Controller {
 			$response = $this->MyModel->auth();
 			if($response['status'] == 200){
 				$resp = $this->MyModel->user_details($users_id);
-				json_output($response['status'],$resp);
+				//json_output($response['status'],$resp);
+				echo json_encode($resp, JSON_NUMERIC_CHECK);
 			}
 		}
 	}

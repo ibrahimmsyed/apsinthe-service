@@ -75,7 +75,7 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '127.0.0.1',
+	'hostname' => 'localhost:3307',
 	'username' => 'root',
 	'password' => '',
 	'database' => 'born_trackr',
