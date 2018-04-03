@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 15, 2018 at 04:32 PM
+-- Generation Time: Feb 27, 2018 at 07:31 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -74,7 +74,8 @@ INSERT INTO `tasks` (`task_id`, `uid`, `converge_id`, `jobtype`, `complexity`, `
 (16, 2, 'aaaLaogan', 'Refresh', '3', '2018-02-07', '2018-02-11', 0, 'WM', 'Logan', NULL, '24.00', NULL, NULL, NULL, '0000-00-00', '0000-00-00', NULL, '$1$d3CN1mD.$V0kebc3dl4lerOjog9VVR.', '2018-02-14 21:22:19'),
 (17, 2, 'aaaLaogan', 'Refresh', '3', '2018-02-07', '2018-02-11', 0, 'WM', 'Logan', NULL, '24.00', NULL, NULL, NULL, '0000-00-00', '0000-00-00', NULL, '$1$d3CN1mD.$V0kebc3dl4lerOjog9VVR.', '2018-02-14 21:25:27'),
 (18, 2, 'aaaLaogan', 'Refresh', '3', '2018-02-07', '2018-02-11', 0, 'WM', 'Shameem', NULL, '24.00', NULL, NULL, NULL, '0000-00-00', '0000-00-00', NULL, '$1$pAVxhSmc$5tvNbHwSDfEK1/pv8RaI30', '2018-02-14 22:44:43'),
-(19, 2, '01_000_PNG', 'Refresh', '3', '2018-02-07', '2018-02-11', NULL, 'WM', 'BILL', NULL, '24.00', NULL, NULL, NULL, '0000-00-00', '0000-00-00', NULL, '$1$j1.AXhn7$n/Mt5OpsXXRXFR1qA6GaQ.', '2018-02-14 22:48:18');
+(19, 2, '01_000_PNG', 'Refresh', '3', '2018-02-07', '2018-02-11', NULL, 'WM', 'BILL', NULL, '24.00', NULL, NULL, NULL, '0000-00-00', '0000-00-00', NULL, '$1$j1.AXhn7$n/Mt5OpsXXRXFR1qA6GaQ.', '2018-02-14 22:48:18'),
+(20, 2, 'aaaLaogan', 'Refresh', '3', '2018-02-07', '2018-02-11', 5, 'WM', 'Shameem', NULL, '24.00', NULL, NULL, NULL, '0000-00-00', '0000-00-00', NULL, '$1$26lLkagn$jIy./qWWU8Mge30Pr90yv.', '2018-02-20 19:24:22');
 
 -- --------------------------------------------------------
 
@@ -112,8 +113,10 @@ CREATE TABLE `userprofile` (
 --
 
 INSERT INTO `userprofile` (`UID`, `EMP_ID`, `PASSWORD`, `FNAME`, `LNAME`, `GENDER`, `DOB`, `DOJ`, `EMAIL_ID`, `DESIGNATION`, `TEAM`, `DEPT`, `DIVISION`, `CONTACT_NO`, `EMERGENCY_CONTACT_NO`, `ROLE`, `PROFILE_PIC`, `TOKEN_ID`, `LAST_SEEN`, `SHIFT_TYPE`, `expired_at`, `updated_at`) VALUES
-(1, 'IN857', '$1$qp88ToDi$is6qgzM6vdSZNk.xal4qj/', 'Sathish Kumar', 'Krishnamoorthy', 'Male', '1991-06-27', '2016-09-26', 'sathish.krishnamoorthy@borngroup.com', 'Front End Developer', 'Triad', 'FED', 'Digital', '8056220084', '8056220084', 2, NULL, NULL, NULL, 'PST', '2018-02-07 22:22:27', '2018-02-07 22:22:27'),
-(2, 'IN001', '$1$qp88ToDi$is6qgzM6vdSZNk.xal4qj/', 'Admin', 'Test', 'Male', '1991-02-05', '2018-02-01', 'admin@borngroup.com', 'Project manager', 'Triad', 'Fed', 'Digital', '9999900000', '9999900000', 0, NULL, '$1$j1.AXhn7$n/Mt5OpsXXRXFR1qA6GaQ.', '2018-02-15 05:47:57', 'EST', '2018-02-15 18:16:07', '2018-02-15 06:16:07');
+(1, 'IN002', '$1$qp88ToDi$is6qgzM6vdSZNk.xal4qj/', 'Sathish Kumar', 'Krishnamoorthy', 'Male', '1991-06-27', '2016-09-26', 'sathish.krishnamoorthy@borngroup.com', 'Front End Developer', 'Triad', 'FED', 'Digital', '8056220084', '8056220084', 2, NULL, '$1$69pufmP6$vWQs4I..5om0lg776T22v1', '2018-02-28 01:22:04', 'PST', '2018-02-28 13:22:06', '2018-02-28 01:22:06'),
+(2, 'IN001', '$1$qp88ToDi$is6qgzM6vdSZNk.xal4qj/', 'Admin', 'Test', 'Male', '1991-02-05', '2018-02-01', 'admin@borngroup.com', 'Project manager', 'Triad', 'Fed', 'Digital', '9999900000', '9999900000', 0, NULL, '$1$47FJoNqI$Azf4T6aUg6Tf0GzDraUPi0', '2018-02-27 23:15:24', 'EST', '2018-02-28 11:15:24', '2018-02-27 07:42:25'),
+(3, 'IN004', '$1$qp88ToDi$is6qgzM6vdSZNk.xal4qj/', 'Sample', 'Lname', '', '0000-00-00', '0000-00-00', '', '', '', NULL, '', '', '', 0, NULL, NULL, NULL, NULL, '2018-02-27 23:53:12', '2018-02-27 23:53:12'),
+(5, 'IN857', '$1$qp88ToDi$is6qgzM6vdSZNk.xal4qj/', 'SathishK', 'Lname', 'Male', '1991-06-27', '1991-06-27', '', 'Employee', 'Triad', NULL, '', '1', '', 0, NULL, '$1$WQDOEf2T$pSj64kGakD4zsEmE5FpNc1', '2018-02-28 01:24:44', NULL, '2018-02-28 13:30:43', '2018-02-28 01:30:43');
 
 --
 -- Indexes for dumped tables
@@ -139,13 +142,13 @@ ALTER TABLE `userprofile`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `userprofile`
 --
 ALTER TABLE `userprofile`
-  MODIFY `UID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `UID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
